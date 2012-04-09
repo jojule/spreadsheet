@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+	<head>
+		<style type="text/css">
+			.v-spreadsheet {
+				width: 500px;
+				height: 150px;
+				border: 1px solid black;
+				overflow: auto;
+				position: relative;
+			}
+
+			.v-spreadsheet .sheet {
+				position: absolute;
+			}
+			.v-spreadsheet .sheet div {
+				position: absolute;
+				border-right: 1px solid #d6d6d6;
+				border-bottom: 1px solid #d6d6d6;
+				background-color: white;
+			}
+
+			.v-spreadsheet .sheet div.ch, .v-spreadsheet .sheet div.rh {
+				background-color: #e1e1e1;
+				text-align: center;
+				font-family: Helvetica;
+				font-size: 10px;
+				padding-top: auto;
+				padding-bottom: auto;
+				font-weight: bold;
+			}
+			.v-spreadsheet .rh {
+				left: 0;
+				width: 47px;
+				height: 11px;
+				border-bottom: 2px solid #d6d6d6;
+			        border-left: 1px solid #d6d6d6;	
+				border-right: 2px solid #d6d6d6;
+			}
+			.v-spreadsheet .ch {
+				top: 0;
+				height: 16px;
+				padding-top:2px;
+				border-right: 2px solid #d6d6d6;
+				border-bottom: 2px solid #d6d6d6;
+				border-top: 1px solid #d6d6d6;
+			}
+			.v-spreadsheet .row1 { height: 12px; top: 21px; }
+			.v-spreadsheet .row2 { height: 12px; top: 34px;}
+			.v-spreadsheet .row3 { height: 12px; top: 47px;}
+			.v-spreadsheet .row4 { height: 12px; top: 60px;}
+			.v-spreadsheet .row5 { height: 12px; top: 73px;}
+			.v-spreadsheet .row6 { height: 12px; top: 86px;}
+			.v-spreadsheet .row7 { height: 12px; top: 99px;}
+			.v-spreadsheet .row8 { height: 12px; top: 112px;}
+			.v-spreadsheet .row9 { height: 12px; top: 125px;}
+			.v-spreadsheet .row10 { height: 12px; top: 138px;}
+			.v-spreadsheet .row11 { height: 12px; top: 151px;}
+			.v-spreadsheet .row12 { height: 12px; top: 164px;}
+			.v-spreadsheet .row13 { height: 12px; top: 177px;}
+			.v-spreadsheet .row14 { height: 12px; top: 190px;}
+			.v-spreadsheet .col1 { width: 99px; left: 50px;}
+			.v-spreadsheet .col2 { width: 99px; left: 150px;}
+			.v-spreadsheet .col3 { width: 99px; left: 250px; }
+			.v-spreadsheet .col4 { width: 99px; left: 350px; }
+			.v-spreadsheet .col5 { width: 99px; left: 450px; }
+			.v-spreadsheet .col6 { width: 99px; left: 550px; }
+		</style>
+	</head>
+	<body>
+
+		<div class="v-spreadsheet" id="elem">
+			<div class="sheet" id="sheet">
+				
+				<div class="c col1 row1"></div>
+				<div class="c col2 row1"></div>
+				<div class="c col3 row1"></div>
+				<div class="c col4 row1"></div>
+				<div class="c col5 row1"></div>
+				<div class="c col6 row1"></div>
+				<div class="rh row1">1</div>
+
+				<div class="c col1 row2"></div>
+				<div class="c col2 row2"></div>
+				<div class="c col3 row2"></div>
+				<div class="c col4 row2"></div>
+				<div class="c col5 row2"></div>
+				<div class="c col6 row2"></div>
+				<div class="rh row2">2</div>
+
+				<div class="c col1 row3"></div>
+				<div class="c col2 row3"></div>
+				<div class="c col3 row3"></div>
+				<div class="c col4 row3"></div>
+				<div class="c col5 row3"></div>
+				<div class="c col6 row3"></div>
+				<div class="rh row3">3</div>
+
+				<div class="c col1 row4"></div>
+				<div class="c col2 row4"></div>
+				<div class="c col3 row4"></div>
+				<div class="c col4 row4"></div>
+				<div class="c col5 row4"></div>
+				<div class="c col6 row4"></div>
+				<div class="rh row4">4</div>
+
+				<div class="c col1 row5"></div>
+				<div class="c col2 row5"></div>
+				<div class="c col3 row5"></div>
+				<div class="c col4 row5"></div>
+				<div class="c col5 row5"></div>
+				<div class="c col6 row5"></div>
+				<div class="rh row5">5</div>
+
+				<div class="c col1 row6"></div>
+				<div class="c col2 row6"></div>
+				<div class="c col3 row6"></div>
+				<div class="c col4 row6"></div>
+				<div class="c col5 row6"></div>
+				<div class="c col6 row6"></div>
+				<div class="rh row6">6</div>
+
+				<div class="c col1 row7"></div>
+				<div class="c col2 row7"></div>
+				<div class="c col3 row7"></div>
+				<div class="c col4 row7"></div>
+				<div class="c col5 row7"></div>
+				<div class="c col6 row7"></div>
+				<div class="rh row7">7</div>
+				
+				<div class="c col1 row8"></div>
+				<div class="c col2 row8"></div>
+				<div class="c col3 row8"></div>
+				<div class="c col4 row8"></div>
+				<div class="c col5 row8"></div>
+				<div class="c col6 row8"></div>
+				<div class="rh row8">8</div>
+				
+				<div class="c col1 row9"></div>
+				<div class="c col2 row9"></div>
+				<div class="c col3 row9"></div>
+				<div class="c col4 row9"></div>
+				<div class="c col5 row9"></div>
+				<div class="c col6 row9"></div>
+				<div class="rh row9">9</div>
+				
+				<div class="c col1 row10"></div>
+				<div class="c col2 row10"></div>
+				<div class="c col3 row10"></div>
+				<div class="c col4 row10"></div>
+				<div class="c col5 row10"></div>
+				<div class="c col6 row10"></div>
+				<div class="rh row10">10</div>
+				
+				<div class="c col1 row11"></div>
+				<div class="c col2 row11"></div>
+				<div class="c col3 row11"></div>
+				<div class="c col4 row11"></div>
+				<div class="c col5 row11"></div>
+				<div class="c col6 row11"></div>
+				<div class="rh row11">11</div>
+				
+				<div class="c col1 row12"></div>
+				<div class="c col2 row12"></div>
+				<div class="c col3 row12"></div>
+				<div class="c col4 row12"></div>
+				<div class="c col5 row12"></div>
+				<div class="c col6 row12"></div>
+				<div class="rh row12">12</div>
+				
+				<div class="c col1 row13"></div>
+				<div class="c col2 row13"></div>
+				<div class="c col3 row13"></div>
+				<div class="c col4 row13"></div>
+				<div class="c col5 row13"></div>
+				<div class="c col6 row13"></div>
+				<div class="rh row13">13</div>
+				
+				<div class="c col1 row14"></div>
+				<div class="c col2 row14"></div>
+				<div class="c col3 row14"></div>
+				<div class="c col4 row14"></div>
+				<div class="c col5 row14"></div>
+				<div class="c col6 row14"></div>
+				<div class="rh row14">14</div>
+				
+				<div class="ch col1">A</div>
+				<div class="ch col2">B</div>
+				<div class="ch col3">C</div>
+				<div class="ch col4">D</div>
+				<div class="ch col5">E</div>
+				<div class="ch col6">F</div>
+
+				<div class="ch rh"></div>
+			</div>
+		</div>	
+
+		<script>
+			document.getElementById("elem").onscroll = function() {
+				var e =	document.getElementById("elem");
+				var l = e.scrollLeft;
+				var classes = document.styleSheets[0].rules || document.styleSheets[0].cssRules
+				    for(var x=0;x<classes.length;x++) {
+					if(classes[x].selectorText==".v-spreadsheet .ch") {
+						classes[x].style.top=e.scrollTop+"px"
+					}
+					if(classes[x].selectorText==".v-spreadsheet .rh") {
+						classes[x].style.left=e.scrollLeft+"px"
+					}
+				    }
+			}
+		</script>
+	</body>
+</html>
