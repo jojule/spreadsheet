@@ -11,8 +11,8 @@
         <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
         <init-param>
             <description>Vaadin application class to start</description>
-            <param-name>application</param-name>
-            <param-value>org.vaadin.spreadsheet.TestApp</param-value>
+            <param-name>root</param-name>
+            <param-value>org.vaadin.spreadsheet.TestRoot</param-value>
         </init-param>
         <init-param>
             <description>Application widgetset</description>

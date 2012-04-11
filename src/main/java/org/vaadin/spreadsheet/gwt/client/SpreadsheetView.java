@@ -23,7 +23,7 @@ public class SpreadsheetView extends Widget {
 	public SpreadsheetView(SpreadsheetModel model) {
 		this.model = model;
 		initDOM();
-		//updateSheetSize();
+		updateSheetSize();
 		createCells();
 		updateHeaders();
 	}
