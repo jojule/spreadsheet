@@ -13,6 +13,7 @@ public class TestRoot extends Root
 {
     protected void init(WrappedRequest request) {
     	VerticalLayout vl = new VerticalLayout();
+    	vl.setMargin(true);
     	vl.setSizeFull();
     	setContent(vl);
 		Spreadsheet ss = new Spreadsheet();
