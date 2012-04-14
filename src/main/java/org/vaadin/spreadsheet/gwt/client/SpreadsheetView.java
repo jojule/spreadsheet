@@ -122,8 +122,11 @@ public class SpreadsheetView extends Widget {
 	public final static native void insertRule(StyleElement stylesheet,
 			String css)
 	/*-{
-		// TODO For IE, just use setCssText that happens to work on GWT
-		stylesheet.sheet.insertRule(css, stylesheet.sheet.cssRules.length);
+		 var isIE = navigator&&navigator.userAgent&&navigator.userAgent.match(/\bMSIE ([678])\./);
+		 if (isIE)
+		 	stylesheet.sheet.cssText += css;
+		 else
+		 	stylesheet.sheet.insertRule(css, stylesheet.sheet.cssRules.length);
 	}-*/;
 
 	public final static native void updateCSSRule(StyleElement stylesheet,

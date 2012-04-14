@@ -1,9 +1,8 @@
 package org.vaadin.spreadsheet;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -49,7 +48,7 @@ public class Spreadsheet extends AbstractComponent {
 	 * Get contents of a sell as HTML. Columns are indexed from 1 to
 	 * getColumns(). Rows are indexed from 1 to getRows().
 	 */
-	String getCellHtml(int row, int col) {
+	public String getCellHtml(int row, int col) {
 		return getState().getCellHtml(col, row);
 	}
 
@@ -57,15 +56,15 @@ public class Spreadsheet extends AbstractComponent {
 	 * Set contents of a sell as HTML. Columns are indexed from 1 to
 	 * getColumns(). Rows are indexed from 1 to getRows().
 	 */
-	void setCellHtml(int row, int col, String contents) {
+	public void setCellHtml(int row, int col, String contents) {
 		getState().setCellHtml(col, row, contents);
 		requestRepaint();
 	}
 
-	void readXLS(File file) throws FileNotFoundException, IOException {
+	public void readXLS(InputStream file) throws FileNotFoundException, IOException {
 
 		// Load XLS file
-		POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(file));
+		POIFSFileSystem fs = new POIFSFileSystem(file);
 		HSSFWorkbook workbook = new HSSFWorkbook(fs);
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		FormulaEvaluator evaluator = workbook.getCreationHelper()

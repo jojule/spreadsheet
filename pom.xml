@@ -5,7 +5,7 @@
 	<groupId>org.vaadin</groupId>
 	<artifactId>spreadsheet</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>Vaadin Widget</name>
 
 	<properties>
@@ -132,6 +132,7 @@
 						redeployment -->
 					<scanIntervalSeconds>0</scanIntervalSeconds>
 					<!-- make sure Jetty also finds the widgetset -->
+					<useTestClasspath>true</useTestClasspath>
 					<webAppConfig>
 						<contextPath>/spreadsheet</contextPath>
 						<baseResource implementation="org.mortbay.resource.ResourceCollection">

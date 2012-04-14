@@ -12,7 +12,7 @@
         <init-param>
             <description>Vaadin application class to start</description>
             <param-name>root</param-name>
-            <param-value>org.vaadin.spreadsheet.TestRoot</param-value>
+            <param-value>org.vaadin.spreadsheet.test.SpreadsheetUploadDemo</param-value>
         </init-param>
         <init-param>
             <description>Application widgetset</description>
