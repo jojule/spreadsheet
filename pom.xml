@@ -6,7 +6,7 @@
 	<artifactId>spreadsheet</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1</version>
-	<name>Vaadin Widget</name>
+	<name>Spreadsheet</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
