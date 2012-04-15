@@ -38,5 +38,5 @@ public interface SpreadsheetModel {
 	 * Set contents of a sell as HTML. Columns are indexed from 1 to
 	 * getColumns(). Rows are indexed from 1 to getRows().
 	 */
-	String getCellStyle(int row, int col);
+	String getCellStyle(int row, int col);	
 }

@@ -49,7 +49,7 @@ public class Spreadsheet extends AbstractComponent {
 	 * getColumns(). Rows are indexed from 1 to getRows().
 	 */
 	public String getCellHtml(int row, int col) {
-		return getState().getCellHtml(col, row);
+		return getState().getCellHtml(row, col);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Spreadsheet extends AbstractComponent {
 	 * getColumns(). Rows are indexed from 1 to getRows().
 	 */
 	public void setCellHtml(int row, int col, String contents) {
-		getState().setCellHtml(col, row, contents);
+		getState().setCellHtml(row, col, contents);
 		requestRepaint();
 	}
 
@@ -90,6 +90,17 @@ public class Spreadsheet extends AbstractComponent {
 			}
 		}
 		setCols(cols);
+		
+		requestRepaint();
 	}
 
+	
+	public boolean isGraphEnabled() {
+		return getState().isGraphEnabled();
+	}
+
+	public void setGraphEnabled(boolean graphEnabled) {
+		getState().setGraphEnabled(graphEnabled);
+		requestRepaint();
+	}
 }

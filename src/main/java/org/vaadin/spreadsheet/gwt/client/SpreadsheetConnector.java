@@ -29,5 +29,6 @@ public class SpreadsheetConnector extends AbstractComponentConnector {
 	public void onStateChanged(StateChangeEvent stateChangeEvent) {
 		super.onStateChanged(stateChangeEvent);
 		getWidget().setModel(getState());
+		getWidget().setGraphEnabled(getState().isGraphEnabled());
 	}
 }

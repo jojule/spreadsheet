@@ -11,8 +11,17 @@ public class SpreadsheetState extends ComponentState implements
 	HashMap<String, String> cellContentsHtml = new HashMap<String, String>();
 	int rows;
 	int cols;
+	boolean graphEnabled = false;
 
 	
+	public boolean isGraphEnabled() {
+		return graphEnabled;
+	}
+
+	public void setGraphEnabled(boolean graphEnabled) {
+		this.graphEnabled = graphEnabled;
+	}
+
 	public HashMap<String, String> getCellContentsHtml() {
 		return cellContentsHtml;
 	}
@@ -42,7 +51,7 @@ public class SpreadsheetState extends ComponentState implements
 	}
 
 	public int getColWidth(int col) {
-		return 100;
+		return 200;
 	}
 
 	public String getColHeader(int col) {
@@ -62,7 +71,7 @@ public class SpreadsheetState extends ComponentState implements
 		cellContentsHtml.put(row + "," + col, html);
 	}
 
-	public String getCellStyle(int col, int row) {
+	public String getCellStyle(int row, int col) {
 		return "";
 	}
 	

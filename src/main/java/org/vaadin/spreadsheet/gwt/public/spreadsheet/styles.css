@@ -9,6 +9,12 @@
 	font-size: 10px;	
 }
 
+.v-spreadsheet canvas {
+	left: 100px;
+	top: 50px;
+	position: absolute;
+}
+
 .v-spreadsheet .sheet {
 	overflow: auto;
 	left:0;

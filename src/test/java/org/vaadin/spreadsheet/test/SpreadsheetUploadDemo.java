@@ -2,6 +2,7 @@ package org.vaadin.spreadsheet.test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -27,13 +28,17 @@ public class SpreadsheetUploadDemo extends Root implements Receiver
     	setContent(vl);
 		vl.addComponent(spreadsheet);
 		vl.setExpandRatio(spreadsheet, 1.0f);
+//		try {
+//			spreadsheet.readXLS(getClass().getResourceAsStream("test.xls"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		spreadsheet.setGraphEnabled(true);
 	}
 
 	public OutputStream receiveUpload(final String filename, String mimeType) {
-		showNotification("Upload started");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream() {
 			public void close() throws IOException {
-				showNotification("Upload finished");
 				super.close();
 				spreadsheet.setCaption(filename);
 				spreadsheet.readXLS(new ByteArrayInputStream(this.toByteArray()));
