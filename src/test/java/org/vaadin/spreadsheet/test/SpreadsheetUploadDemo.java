@@ -28,11 +28,6 @@ public class SpreadsheetUploadDemo extends Root implements Receiver
     	setContent(vl);
 		vl.addComponent(spreadsheet);
 		vl.setExpandRatio(spreadsheet, 1.0f);
-//		try {
-//			spreadsheet.readXLS(getClass().getResourceAsStream("test.xls"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		spreadsheet.setGraphEnabled(true);
 	}
 
@@ -46,5 +41,4 @@ public class SpreadsheetUploadDemo extends Root implements Receiver
 		};
 		return baos;
 	}
-    
 }
