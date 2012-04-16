@@ -11,10 +11,10 @@ public class SpreadsheetState extends ComponentState implements
 	private HashMap<String, String> cellContentsHtml = new HashMap<String, String>();
 	
 	/** Number of rows in the spreadsheet */
-	private int rows;
+	private int rows = 50;
 	
 	/** Number of columns in the spreadsheet */
-	private int cols;
+	private int cols = 8;
 	
 	/** Is drawing of graph enable */
 	private boolean graphEnabled = false;

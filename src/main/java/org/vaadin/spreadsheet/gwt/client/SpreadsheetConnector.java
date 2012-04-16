@@ -15,17 +15,14 @@ public class SpreadsheetConnector extends AbstractComponentConnector {
 		return GWT.create(SpreadsheetView.class);
 	}
 
-	@Override
 	public SpreadsheetView getWidget() {
 		return (SpreadsheetView) super.getWidget();
 	}
 	
-	@Override
 	public SpreadsheetState getState() {
 		return (SpreadsheetState) super.getState();
 	}
 	
-	@Override
 	public void onStateChanged(StateChangeEvent stateChangeEvent) {
 		super.onStateChanged(stateChangeEvent);
 		getWidget().setModel(getState());

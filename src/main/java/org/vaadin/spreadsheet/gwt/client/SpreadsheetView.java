@@ -282,7 +282,7 @@ public class SpreadsheetView extends Widget {
 				colHeader = colHeaders.get(i);
 			else {
 				colHeader = Document.get().createDivElement();
-				getElement().insertBefore(colHeader, corner);
+				spreadsheet.insertBefore(colHeader, corner);
 				colHeaders.add(i, colHeader);
 				colHeader.setClassName("ch col" + (i + 1));
 			}
@@ -294,18 +294,35 @@ public class SpreadsheetView extends Widget {
 				rowHeader = rowHeaders.get(i);
 			else {
 				rowHeader = Document.get().createDivElement();
-				getElement().insertBefore(rowHeader, corner);
+				spreadsheet.insertBefore(rowHeader, corner);
 				rowHeaders.add(i, rowHeader);
 				rowHeader.setClassName("rh row" + (i + 1));
 			}
 			rowHeader.setInnerHTML(model.getRowHeader(i + 1));
 		}
-
+		// Remove unused headers
+		while (rowHeaders.size()>model.getRows()) {
+			spreadsheet.removeChild(rowHeaders.get(model.getRows()));
+			rowHeaders.remove(model.getRows());
+		}
+		while (colHeaders.size()>model.getCols()) {
+			spreadsheet.removeChild(colHeaders.get(model.getCols()));
+			colHeaders.remove(model.getCols());
+		}
 	}
 
 	/** Update the data cells in the spreadsheet to reflect the current model */ 
 	private void updateCells() {
-	// TODO rewrite (does not properly clean up)
+		// Remove old cells
+		for (ArrayList<DivElement> row : rows) {
+			for (DivElement cell : row) {
+				sheet.removeChild(cell);
+			}
+			row.clear();
+		}
+		rows.clear();
+		
+		// Add new cells
 		rows.ensureCapacity(model.getRows());
 		for (int i = 0; i < model.getRows(); i++) {
 			ArrayList<DivElement> row = new ArrayList<DivElement>();
