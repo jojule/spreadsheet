@@ -26,19 +26,29 @@ public class Spreadsheet extends AbstractComponent {
 		return (SpreadsheetState) super.getState();
 	}
 
+	/** Get the number of columns in the spreadsheet */
 	public int getCols(int cols) {
 		return getState().getCols();
 	}
 
+	/** Get the number of rows in the spreadsheet */
 	public int getRows() {
 		return getState().getRows();
 	}
 
+	/**
+	 * Set the number of columns in the spreadsheet. Any unset cells are left
+	 * empty. Any cells outside the given columns are hidden.
+	 */
 	public void setCols(int cols) {
 		getState().setCols(cols);
 		requestRepaint();
 	}
 
+	/**
+	 * Set the number of rows in the spreadsheet. Any unset cells are left
+	 * empty. Any cells outside the given rows are hidden.
+	 */
 	public void setRows(int rows) {
 		getState().setRows(rows);
 		requestRepaint();
@@ -61,7 +71,12 @@ public class Spreadsheet extends AbstractComponent {
 		requestRepaint();
 	}
 
-	public void readXLS(InputStream file) throws FileNotFoundException, IOException {
+	/**
+	 * Reset the spreadsheet contents with an excel file read from the given
+	 * InputStream.
+	 */
+	public void readXLS(InputStream file) throws FileNotFoundException,
+			IOException {
 
 		// Load XLS file
 		POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -69,7 +84,7 @@ public class Spreadsheet extends AbstractComponent {
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		FormulaEvaluator evaluator = workbook.getCreationHelper()
 				.createFormulaEvaluator();
-		
+
 		// Load cells from the file
 		getState().clearCells();
 		setRows(sheet.getLastRowNum() + 1);
@@ -90,15 +105,16 @@ public class Spreadsheet extends AbstractComponent {
 			}
 		}
 		setCols(cols);
-		
+
 		requestRepaint();
 	}
 
-	
+	/** Is the floating graph drawn */
 	public boolean isGraphEnabled() {
 		return getState().isGraphEnabled();
 	}
 
+	/** Set if the floating graph is drawn */
 	public void setGraphEnabled(boolean graphEnabled) {
 		getState().setGraphEnabled(graphEnabled);
 		requestRepaint();
