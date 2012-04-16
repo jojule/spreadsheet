@@ -68,6 +68,7 @@
 			.v-spreadsheet .col6 { width: 99px; left: 550px; }
 		</style>
 	</head>
+	
 	<body>
 
 		<div class="v-spreadsheet" id="elem">
@@ -197,18 +198,20 @@
 		</div>	
 
 		<script>
+		
+			// Scroll headers while scrolling the contents
 			document.getElementById("elem").onscroll = function() {
 				var e =	document.getElementById("elem");
 				var l = e.scrollLeft;
 				var classes = document.styleSheets[0].rules || document.styleSheets[0].cssRules
-				    for(var x=0;x<classes.length;x++) {
+			    for(var x=0;x<classes.length;x++) {
 					if(classes[x].selectorText==".v-spreadsheet .ch") {
 						classes[x].style.top=e.scrollTop+"px"
 					}
 					if(classes[x].selectorText==".v-spreadsheet .rh") {
 						classes[x].style.left=e.scrollLeft+"px"
 					}
-				    }
+			    }
 			}
 		</script>
 	</body>
