@@ -16,31 +16,94 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class SpreadsheetView extends Widget {
 
+	/**
+	 * Fixed column header height, including borders. Keep in sync with style
+	 * sheet.
+	 */
 	private static int COLUMN_HEADER_HEIGHT = 19;
+
+	/** Fixed row header width, including borders. Keep in sync with stylesheet. */
 	private static int ROW_HEADER_WIDTH = 50;
+
+	/** Dynamic graph height in pixels */
 	private static int GRAPH_HEIGHT = 100;
+
+	/** Dynamic graph width in pixels */
 	private static int GRAPH_WIDTH = 200;
-	boolean graphEnabled = false;
-	// Column number (1..) for the column graph is currently shown, or 0 if not
-	// shown
-	int graphColumn;
 
-	CanvasElement graph = Document.get().createCanvasElement();
-	Context2d graphCx = graph.getContext2d();
-	DivElement spreadsheet = Document.get().createDivElement();
-	DivElement sheet = Document.get().createDivElement();
-	DivElement corner = Document.get().createDivElement();
-	ArrayList<DivElement> rowHeaders = new ArrayList<DivElement>();
-	ArrayList<DivElement> colHeaders = new ArrayList<DivElement>();
-	ArrayList<ArrayList<DivElement>> rows = new ArrayList<ArrayList<DivElement>>();
-	StyleElement style = Document.get().createStyleElement();
-	SpreadsheetModel model;
-	String sheetId;
+	/** Should we draw graph while mouse is over a column */
+	private boolean graphEnabled = false;
 
+	/**
+	 * Column number (1..) for the column graph is currently shown, or 0 if not
+	 * shown
+	 */
+	private int graphColumn;
+
+	/** Canvas for drawing the hovering graph */
+	private CanvasElement graph = Document.get().createCanvasElement();
+
+	/** Drawing context for modifying graph */
+	private Context2d graphCx = graph.getContext2d();
+
+	/** Spreadsheet main (outmost) element */
+	private DivElement spreadsheet = Document.get().createDivElement();
+
+	/** Sheet that will contain all the cells */
+	private DivElement sheet = Document.get().createDivElement();
+
+	/** Header corner element that covers crossing headers */
+	private DivElement corner = Document.get().createDivElement();
+
+	/**
+	 * Div elements for row header divs. Note that index 0 in array points to
+	 * div on row 1
+	 */
+	private ArrayList<DivElement> rowHeaders = new ArrayList<DivElement>();
+
+	/**
+	 * Div elements for column header divs. Note that index 0 in array points to
+	 * div on column 1
+	 */
+	private ArrayList<DivElement> colHeaders = new ArrayList<DivElement>();
+
+	/**
+	 * List of rows. Each row is a list of divs on that row. Note that index 0
+	 * in the outer list points to row 1 and index 0 in the inner list points to
+	 * div in column 1
+	 */
+	private ArrayList<ArrayList<DivElement>> rows = new ArrayList<ArrayList<DivElement>>();
+
+	/** Stylesheet element created for holding the dynamic row and column styles */
+	private StyleElement style = Document.get().createStyleElement();
+
+	/** Model that stores the contents of the spreadsheet */
+	private SpreadsheetModel model;
+
+	/**
+	 * Random id used as additional style for the widget element to connect
+	 * dynamic CSS rules to correct spreadsheet.
+	 */
+	private String sheetId;
+
+	/**
+	 * Constructor just initializes DOM and listeners. You must call setModel()
+	 * to show something on the page.
+	 */
+	public SpreadsheetView() {
+		initDOM();
+		initListeners();
+	}
+
+	/** Get the model that stores the contents of the spreadsheet. */
 	public SpreadsheetModel getModel() {
 		return model;
 	}
 
+	/**
+	 * Set the model that stores the contents of the spreadsheet. Setting model
+	 * redraws the sheet.
+	 */
 	public void setModel(SpreadsheetModel model) {
 		this.model = model;
 		graphColumn = 0;
@@ -49,11 +112,7 @@ public class SpreadsheetView extends Widget {
 		updateHeaders();
 	}
 
-	public SpreadsheetView() {
-		initDOM();
-		initListeners();
-	}
-
+	/** Initialize scroll and mouse listeners to make spreadsheet interactive */
 	private void initListeners() {
 		Event.sinkEvents(sheet, Event.ONSCROLL | Event.ONMOUSEMOVE
 				| Event.ONMOUSEOUT);
@@ -68,10 +127,10 @@ public class SpreadsheetView extends Widget {
 					hideGraph();
 				}
 			}
-
 		});
 	}
 
+	/** Called after scrolling to move headers in order to keep them in sync with the spreadsheet contents */
 	private void moveHeadersToMatchScroll() {
 		updateCSSRule(style, ".v-spreadsheet .ch", "marginLeft",
 				(50 - sheet.getScrollLeft()) + "px");
@@ -79,11 +138,16 @@ public class SpreadsheetView extends Widget {
 				(19 - sheet.getScrollTop()) + "px");
 	}
 
+	/** Draw floating graph to visualize given data. */
 	private void redrawGraph(double[] data) {
+		
+		// Clear background
 		graphCx.setFillStyle("#00b4f0");
 		graphCx.fillRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
 		if (data.length < 2)
 			return;
+		
+		// Find out the range of the data
 		double min = data[0];
 		double max = data[0];
 		for (int i = 1; i < data.length; i++) {
@@ -96,6 +160,8 @@ public class SpreadsheetView extends Widget {
 			max += 0.5;
 			min -= 0.5;
 		}
+		
+		// Draw linegraph 
 		graphCx.setStrokeStyle("#fff");
 		graphCx.setLineWidth(3);
 		graphCx.beginPath();
@@ -103,7 +169,6 @@ public class SpreadsheetView extends Widget {
 			int x = 2 + (GRAPH_WIDTH - 4) * i / (data.length - 1);
 			int y = (int) ((GRAPH_HEIGHT - 4) * (1.0 - (data[i] - min)
 					/ (max - min))) + 2;
-			System.out.println(x + "," + y);
 			if (i == 0)
 				graphCx.moveTo(0, y);
 			else
@@ -175,6 +240,7 @@ public class SpreadsheetView extends Widget {
 		resetStyleSheetRules(style, rules);
 	}
 
+	/** Replace stylesheet with the array of rules given */
 	static private void resetStyleSheetRules(StyleElement stylesheet,
 			String[] rules) {
 		// TODO remove all rules
@@ -183,6 +249,7 @@ public class SpreadsheetView extends Widget {
 		}
 	}
 
+	/** Insert one CSS rule to given stylesheet */
 	public final static native void insertRule(StyleElement stylesheet,
 			String css)
 	/*-{
@@ -193,6 +260,7 @@ public class SpreadsheetView extends Widget {
 		 	stylesheet.sheet.insertRule(css, stylesheet.sheet.cssRules.length);
 	}-*/;
 
+	/** Search and update a given CSS rule in a stylesheet */
 	public final static native void updateCSSRule(StyleElement stylesheet,
 			String selector, String property, String value)
 	/*-{
@@ -204,6 +272,7 @@ public class SpreadsheetView extends Widget {
 		}	
 	}-*/;
 
+	/** Update the headers to match the model. Create and recycle header divs as needed. */
 	private void updateHeaders() {
 		rowHeaders.ensureCapacity(model.getRows());
 		colHeaders.ensureCapacity(model.getCols());
@@ -234,8 +303,9 @@ public class SpreadsheetView extends Widget {
 
 	}
 
-	// TODO rewrite (does not properly clean up)
+	/** Update the data cells in the spreadsheet to reflect the current model */ 
 	private void updateCells() {
+	// TODO rewrite (does not properly clean up)
 		rows.ensureCapacity(model.getRows());
 		for (int i = 0; i < model.getRows(); i++) {
 			ArrayList<DivElement> row = new ArrayList<DivElement>();
@@ -252,10 +322,12 @@ public class SpreadsheetView extends Widget {
 		}
 	}
 
+	/** Is the floating graph drawn */
 	public boolean isGraphEnabled() {
 		return graphEnabled;
 	}
 
+	/** Set if the floating graph is drawn */
 	public void setGraphEnabled(boolean graphEnabled) {
 		this.graphEnabled = graphEnabled;
 		if (!graphEnabled) {
@@ -264,6 +336,7 @@ public class SpreadsheetView extends Widget {
 
 	}
 
+	/** Update the floating graph position and contents after each mouse move event. */
 	private void updateGraphAfterMouseMove(Event event) {
 		graphColumn = 0;
 		graph.getStyle().setVisibility(Visibility.VISIBLE);
@@ -274,7 +347,8 @@ public class SpreadsheetView extends Widget {
 				event.getClientX() - getElement().getAbsoluteLeft() + 40,
 				Unit.PX);
 		int newColumn = 1;
-		int w = event.getClientX() - getElement().getAbsoluteLeft() - ROW_HEADER_WIDTH;
+		int w = event.getClientX() - getElement().getAbsoluteLeft()
+				- ROW_HEADER_WIDTH;
 		while (w > model.getColWidth(newColumn)) {
 			w -= model.getColWidth(newColumn);
 			newColumn++;
@@ -284,7 +358,6 @@ public class SpreadsheetView extends Widget {
 			LinkedList<Double> ll = new LinkedList<Double>();
 			for (int i = 0; i < model.getRows(); i++) {
 				String value = model.getCellHtml(i + 1, newColumn);
-				System.out.println((i + 1) + " : " + value);
 				try {
 					double nv = Double.parseDouble(value);
 					ll.add(new Double(nv));
@@ -301,6 +374,7 @@ public class SpreadsheetView extends Widget {
 		}
 	}
 
+	/** Hide the graph element */
 	private void hideGraph() {
 		graphColumn = 0;
 		graph.getStyle().setVisibility(Visibility.HIDDEN);
