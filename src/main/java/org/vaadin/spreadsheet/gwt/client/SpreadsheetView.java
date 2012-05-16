@@ -162,8 +162,8 @@ public class SpreadsheetView extends Widget {
 		}
 		
 		// Draw linegraph 
-		graphCx.setStrokeStyle("#fff");
-		graphCx.setLineWidth(3);
+		graphCx.setStrokeStyle("#aff");
+		graphCx.setLineWidth(10);
 		graphCx.beginPath();
 		for (int i = 0; i < data.length; i++) {
 			int x = 2 + (GRAPH_WIDTH - 4) * i / (data.length - 1);
@@ -361,11 +361,11 @@ public class SpreadsheetView extends Widget {
 				event.getClientY() - getElement().getAbsoluteTop()
 						- GRAPH_HEIGHT / 2 + COLUMN_HEADER_HEIGHT, Unit.PX);
 		graph.getStyle().setLeft(
-				event.getClientX() - getElement().getAbsoluteLeft() + 40,
+				event.getClientX() - getElement().getAbsoluteLeft() + 20,
 				Unit.PX);
 		int newColumn = 1;
 		int w = event.getClientX() - getElement().getAbsoluteLeft()
-				- ROW_HEADER_WIDTH;
+				- ROW_HEADER_WIDTH + sheet.getScrollLeft();
 		while (w > model.getColWidth(newColumn)) {
 			w -= model.getColWidth(newColumn);
 			newColumn++;
