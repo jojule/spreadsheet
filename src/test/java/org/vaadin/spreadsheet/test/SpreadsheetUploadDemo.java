@@ -20,7 +20,7 @@ public class SpreadsheetUploadDemo extends Root implements Receiver
 	Spreadsheet spreadsheet = new Spreadsheet();
 	
     protected void init(WrappedRequest request) {
-    	setCaption("Spreadsheet component XLS upload demo");
+    	getPage().setTitle("Spreadsheet demo");
     	VerticalLayout vl = new VerticalLayout();
     	vl.setMargin(true);
     	vl.setSizeFull();
