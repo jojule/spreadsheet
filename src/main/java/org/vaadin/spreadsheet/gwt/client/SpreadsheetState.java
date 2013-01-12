@@ -2,9 +2,9 @@ package org.vaadin.spreadsheet.gwt.client;
 
 import java.util.HashMap;
 
-import com.vaadin.terminal.gwt.client.ComponentState;
+import com.vaadin.shared.AbstractComponentState;
 
-public class SpreadsheetState extends ComponentState implements
+public class SpreadsheetState extends AbstractComponentState implements
 		SpreadsheetModel {
 
 	/** Map from toKey() to cell contents as HTML */ 

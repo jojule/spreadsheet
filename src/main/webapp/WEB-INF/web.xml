@@ -8,10 +8,10 @@
     </context-param>
     <servlet>
         <servlet-name>Vaadin Application Servlet</servlet-name>
-        <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
         <init-param>
             <description>Vaadin application class to start</description>
-            <param-name>root</param-name>
+            <param-name>ui</param-name>
             <param-value>org.vaadin.spreadsheet.test.SpreadsheetUploadDemo</param-value>
         </init-param>
         <init-param>
