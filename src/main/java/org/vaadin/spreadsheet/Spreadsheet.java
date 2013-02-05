@@ -42,7 +42,6 @@ public class Spreadsheet extends AbstractComponent {
 	 */
 	public void setCols(int cols) {
 		getState().setCols(cols);
-		requestRepaint();
 	}
 
 	/**
@@ -51,7 +50,6 @@ public class Spreadsheet extends AbstractComponent {
 	 */
 	public void setRows(int rows) {
 		getState().setRows(rows);
-		requestRepaint();
 	}
 
 	/**
@@ -68,7 +66,6 @@ public class Spreadsheet extends AbstractComponent {
 	 */
 	public void setCellHtml(int row, int col, String contents) {
 		getState().setCellHtml(row, col, contents);
-		requestRepaint();
 	}
 
 	/**
@@ -105,8 +102,6 @@ public class Spreadsheet extends AbstractComponent {
 			}
 		}
 		setCols(cols);
-
-		requestRepaint();
 	}
 
 	/** Is the floating graph drawn */
@@ -117,6 +112,5 @@ public class Spreadsheet extends AbstractComponent {
 	/** Set if the floating graph is drawn */
 	public void setGraphEnabled(boolean graphEnabled) {
 		getState().setGraphEnabled(graphEnabled);
-		requestRepaint();
 	}
 }

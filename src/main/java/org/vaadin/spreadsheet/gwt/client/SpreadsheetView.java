@@ -26,10 +26,10 @@ public class SpreadsheetView extends Widget {
 	private static int ROW_HEADER_WIDTH = 50;
 
 	/** Dynamic graph height in pixels */
-	private static int GRAPH_HEIGHT = 100;
+	private static int GRAPH_HEIGHT = 200;
 
 	/** Dynamic graph width in pixels */
-	private static int GRAPH_WIDTH = 200;
+	private static int GRAPH_WIDTH = 300;
 
 	/** Should we draw graph while mouse is over a column */
 	private boolean graphEnabled = false;
